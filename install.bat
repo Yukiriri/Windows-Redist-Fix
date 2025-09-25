@@ -2,19 +2,23 @@
 
 echo VC++...
 for %%i in (vc\*.exe) do (
+    echo %%i
     "%%i" /passive /norestart
 )
 echo VC++ OK
 
 echo .NET...
 for %%i in (dotnet\*.exe) do (
+    echo %%i
     "%%i" /passive /norestart
 )
 echo .NET OK
 
 echo DX...
-dx\directx_Jun2010_redist.exe /Q /T:%TEMP%\directx_Jun2010_redist
-%TEMP%\directx_Jun2010_redist\DXSETUP.exe /silent
+set dx9_installer_name=directx_Jun2010_redist
+echo dx\%dx9_installer_name%.exe
+dx\%dx9_installer_name%.exe /Q /T:%TEMP%\%dx9_installer_name%
+%TEMP%\%dx9_installer_name%\DXSETUP.exe /silent
 echo DX OK
 
 pause
